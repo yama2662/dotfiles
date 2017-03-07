@@ -1,0 +1,12 @@
+[user]
+	name = yama
+	email = yamada2662@gmail.com
+[core]
+	editor = emacs
+	excludesfile = /Users/yama/.gitignore_global
+[color]
+	ui = true
+[alias]
+	graph = log --graph --date-order --all --pretty=format:'%h %Cred%d %Cgreen%ad %Cblue%cn %Creset%s' --date=short
+[push]
+	default = simple
