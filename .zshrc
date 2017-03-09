@@ -1,4 +1,5 @@
 source ~/.zplug/init.zsh
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
 zplug "themes/wedisagree",   from:oh-my-zsh
 
@@ -28,6 +29,20 @@ setopt print_eight_bit
 # 同時に起動したzshの間でヒストリを共有する
 setopt share_history
 
+case ${OSTYPE} in
+    darwin*)
+        #Mac用の設定
+        export CLICOLOR=1
+        alias ls='ls -G -F'
+        fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
+        export PATH=/usr/local/bin:$PATH
+        ;;
+    linux*)
+        #Linux用の設定
+        alias ls='ls -F --color=auto'
+        ;;
+esac
+
 function chpwd() { ls }
 
 
@@ -37,5 +52,3 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias mkdir='mkdir -p'
 alias be='bundle exec'
-
-[ -f ~/.zshrc.local ] && source ~/.zshrc.local
