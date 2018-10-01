@@ -1,4 +1,6 @@
-source ~/.zplug/init.zsh
+export PATH=$PATH:/usr/local/opt/:/Library/TeX/texbin
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
 zplug "themes/wedisagree",   from:oh-my-zsh
