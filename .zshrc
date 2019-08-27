@@ -2,6 +2,11 @@ export PATH=$PATH:/usr/local/opt/:/Library/TeX/texbin
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+export PATH="$HOME/.goenv/bin:$PATH"
+
+eval "$(goenv init -)"
+eval "$(pyenv init -)"
+eval "$(rbenv init -)"
 
 zplug "themes/wedisagree",   from:oh-my-zsh
 
