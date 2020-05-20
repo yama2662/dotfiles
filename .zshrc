@@ -1,8 +1,9 @@
-export PATH=$PATH:/usr/local/opt/:/Library/TeX/texbin
+export PATH=/usr/local/Cellar/openssl@1.1/1.1.1d/include:$PATH:/usr/local/opt/:/Library/TeX/texbin
 export ZPLUG_HOME=/usr/local/opt/zplug
+export LIBRARY_PATH=/usr/local/Cellar/openssl@1.1/1.1.1d/lib
 source $ZPLUG_HOME/init.zsh
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
-export PATH="$HOME/.goenv/bin:$PATH"
+export PATH="$HOME/.goenv/bin:/usr/local/opt/openssl@1.1/bin:$PATH"
 
 eval "$(goenv init -)"
 eval "$(pyenv init -)"
