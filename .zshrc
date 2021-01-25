@@ -1,8 +1,5 @@
 export PATH=/usr/local/Cellar/openssl@1.1/1.1.1d/include:$PATH:/usr/local/opt/:/Library/TeX/texbin
-export ZPLUG_HOME=/usr/local/opt/zplug
 #export LIBRARY_PATH=/usr/local/Cellar/openssl@1.1/1.1.1d/lib
-source $ZPLUG_HOME/init.zsh
-[ -f ~/.zshrc.local ] && source ~/.zshrc.local
 export PATH="$HOME/.goenv/bin:/usr/local/opt/openssl@1.1/bin:$PATH"
 fpath=(~/.zsh/completion $fpath)
 
@@ -10,21 +7,19 @@ eval "$(goenv init -)"
 eval "$(pyenv init -)"
 eval "$(rbenv init -)"
 
-zplug "themes/wedisagree",   from:oh-my-zsh
+source $HOME/.zinit/bin/zinit.zsh
 
-# テーマファイルを読み込む
-#zplug 'dracula/zsh', as:theme
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+zinit light zsh-users/zsh-autosuggestions
+zinit light zdharma/fast-syntax-highlighting
+zinit load zdharma/history-search-multi-word
 
-# 未インストール項目をインストールする
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
+zinit ice from"gh-r" as"program"
+zinit load junegunn/fzf-bin
 
-# コマンドをリンクして、PATH に追加し、プラグインは読み込む
-zplug load --verbose
+zinit wait lucid atload"zicompinit; zicdreplay" blockf for zsh-users/zsh-completions
+
 
 # 環境変数
 export LANG=ja_JP.UTF-8
@@ -61,3 +56,26 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias mkdir='mkdir -p'
 alias be='bundle exec'
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
+
+source "$HOME/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zinit-zsh/z-a-rust \
+    zinit-zsh/z-a-as-monitor \
+    zinit-zsh/z-a-patch-dl \
+    zinit-zsh/z-a-bin-gem-node
+
+### End of Zinit's installer chunk
