@@ -1,11 +1,12 @@
-export PATH=/usr/local/Cellar/openssl@1.1/1.1.1d/include:$PATH:/usr/local/opt/:/Library/TeX/texbin
-#export LIBRARY_PATH=/usr/local/Cellar/openssl@1.1/1.1.1d/lib
-export PATH="$HOME/.goenv/bin:/usr/local/opt/openssl@1.1/bin:$PATH"
+export PATH=/usr/local/Cellar/openssl@1.1/1.1.1d/include:$PATH:/usr/local/opt/:/Library/TeX/texbin:/opt/homebrew/bin:/opt/homebrew/opt/imagemagick@6/bin
+export PATH="$HOME/.goenv/bin:/usr/local/opt/openssl@1.1/bin:$PATH:$PYENV_ROOT/bin"
+export PYENV_ROOT="$HOME/.pyenv"
 fpath=(~/.zsh/completion $fpath)
 
 eval "$(goenv init -)"
-eval "$(pyenv init -)"
 eval "$(rbenv init -)"
+eval "$(nodenv init -)"
+eval "$(pyenv init -)"
 
 source $HOME/.zinit/bin/zinit.zsh
 
@@ -79,3 +80,5 @@ zinit light-mode for \
     zinit-zsh/z-a-bin-gem-node
 
 ### End of Zinit's installer chunk
+
+exec fish

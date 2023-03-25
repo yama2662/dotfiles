@@ -2,7 +2,7 @@
 	name = yama
 	email = yamada2662@gmail.com
 [core]
-	editor = emacs
+	editor = nano
 	excludesfile = /Users/yama/.gitignore_global
 [color]
 	ui = true
@@ -10,3 +10,10 @@
 	graph = log --graph --date-order --all --pretty=format:'%h %Cred%d %Cgreen%ad %Cblue%cn %Creset%s' --date=short
 [push]
 	default = simple
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[init]
+	defaultBranch = master
